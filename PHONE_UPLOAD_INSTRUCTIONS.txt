@@ -1,0 +1,15 @@
+SHAKOPEE BULLSEYE CLUB — PHONE UPLOAD FIX
+
+All website files and P01.jpg etc. are in the ZIP ROOT (no portraits folder).
+Extract ZIP and upload ALL contents directly into the GitHub repository root.
+Replace index.html, app.js, styles.css, starter-data.js when prompted.
+
+Changes:
+- Player portraits reference P01.jpg, etc. in repository root. P02.jpg (Tony) is not in this package.
+- Schedule uses the previously supplied MASTER SCHEDULE REFERENCE: 56 fixtures, actual 6:30 PM/7:45 PM times, lanes, pairings, and match details.
+- Mobile small text enlarged and contrast increased.
+- Cache-busting query strings added to scripts/styles.
+
+IMPORTANT: The master schedule's second half uses cross-slot A vs B / B vs A matches. Confirm that this is intentional before entering those results, because existing standings code tracks A/B contests as A-vs-A and B-vs-B.
+
+If you later connect Google Sheets, ensure its Schedule tab contains these times and matchups, because live data overrides starter-data.js.
