@@ -6,3 +6,28 @@
 .club-logo{display:block;width:108px;max-height:64px;object-fit:contain;object-position:left center}.brand{min-width:110px}.hero{background:radial-gradient(circle at 75% 35%,#352a11 0%,#0b0c0e 58%)!important}.fixture-top{color:#d5a52b}.fixture h3 span{color:#d5a52b!important}@media(max-width:600px){.club-logo{width:80px;max-height:48px}}
 
 .match-pairings{display:grid;gap:6px;margin:10px 0 16px;color:#d9d3c8;font-size:13px}.match-pairings div{padding:6px 10px;border-left:2px solid #d5a52b;background:#111315}
+
+/* Desktop header and consistent club branding */
+.top {display:flex;align-items:center;gap:24px;min-height:100px;background:#111315}
+.top .brand {flex:0 0 auto;min-width:0;max-width:180px}
+.top .brand .club-logo {display:block!important;width:155px!important;height:88px!important;max-width:155px!important;max-height:88px!important;object-fit:contain!important;object-position:left center}
+.top nav {flex:1 1 auto;min-width:0;display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+.top nav a {font-size:11px;line-height:1.4;color:#f6f3eb;white-space:nowrap}
+.top nav a:hover {color:#d5a52b}
+.hero {background:radial-gradient(circle at 75% 35%,#352a11 0%,#0b0c0e 58%)!important;border-color:#51452b}
+.hero p,.status,.scoreline,.news-card p {color:#d6d0c5}
+th {background:#27231b;color:#e4d6ae}
+tbody tr:nth-child(even) {background:#1d1c19}
+tbody tr:hover {background:#302b20}
+input,select {background:#201f1b;color:#fff;border-color:#5b4c2b}
+.btn.ghost {border-color:#88703d}
+@media (min-width:851px) {
+ .top {padding:12px max(24px,calc((100vw - 1320px)/2))}
+ .top nav {max-width:none}
+}
+@media (max-width:850px) {
+ .top {min-height:78px}
+ .top .brand .club-logo {width:92px!important;height:58px!important;max-width:92px!important;max-height:58px!important}
+ .top nav {display:none;width:100%;flex-basis:100%;justify-content:flex-start;align-items:flex-start}
+ .top nav.open {display:flex}
+}
