@@ -29,3 +29,8 @@ All 16 players and confirmed A/B slots are entered. All 56 regular-season fixtur
 
 ## Preview
 Open `index.html` in a browser. Without an Apps Script URL it shows the actual confirmed roster, generated fixtures, and sample welcome news, but no fabricated results or performance averages.
+
+## Championship banner update
+The homepage now displays `every-dart-counts.webp` with the approved EVERY DART COUNTS slogan. Buttons and subtitle appear below the artwork, never on top of it. Upload the image alongside `index.html` and `styles.css`.
+
+NEWS UPDATE: The Bullseye Bulletin season preview is preloaded in starter-data.js. Three most recent published news cards appear with full-article dialogs; View All News appears when more than three are available. Once a live Google Sheets feed is configured, add this article as a row in the News tab to retain it in the live feed. See SEASON_PREVIEW.txt.

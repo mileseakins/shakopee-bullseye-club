@@ -1,0 +1,13 @@
+SHAKOPEE BULLSEYE CLUB — WEEKLY STATS + PORTRAITS
+
+1. Upload all website files and the portraits folder to the root of your GitHub repository (replace existing index.html, app.js, styles.css, starter-data.js and Code.gs). Keep the portraits folder structure.
+2. In your Google Sheet, import "Weekly Stats.csv" as a NEW sheet and rename its tab EXACTLY "Weekly Stats". Enter each player's actual PPR and MPR in the matching week row. Do not change PlayerID values.
+3. In Extensions > Apps Script, replace the old Code.gs with the new Code.gs, save, and deploy a NEW VERSION of the existing web app. The website reads weekly stats from the same feed as the roster and schedule.
+4. IMPORTANT: config.js currently contains an EMPTY BULLSEYE_API_URL. To enable live data, paste your deployed Apps Script /exec URL in config.js, commit it to GitHub, and reload. Without this, weekly stats won't update from Sheets.
+5. The schedule now selects the next scheduled/current week by default, with All weeks and each specific week available in the dropdown.
+6. "Performers of the Week" uses weekly PPR, weekly MPR and MPR gain since Week 1. Each award goes to a different player if enough players have valid stats. If a week has no data, awards remain blank rather than invented.
+7. Portrait files were assembled from available approved images. One portrait (Tony Pastrana, P02) could not be unambiguously matched to an available source file, so P02 is intentionally left as initials rather than assigning the wrong face. Upload the correct P02.jpg into portraits/ and set P02 PortraitURL to portraits/P02.jpg in starter-data.js or the Players Google Sheet.
+8. Live Google Sheets Players.PortraitURL fields must be filled with portraits/P01.jpg ... portraits/P16.jpg; otherwise the live feed can overwrite starter portrait paths.
+9. The logo uses the new filename club-logo-v3.png to bypass the old cached file.
+
+The original workbook is included as a reference; the new Weekly Stats CSV is intended for import into your active Google Sheet.
