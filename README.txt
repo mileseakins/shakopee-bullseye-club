@@ -1,5 +1,8 @@
-Shakopee Bullseye Club - alphabetical player profiles
+Shakopee Bullseye Club - Updated Player Photos
 
-Upload index.html and roster-hotfix.js to the root of the GitHub repository. Replace both existing files.
+P107.jpg = Jason Larson (light-blue Viper / Michelob Golden Light jersey)
+P01.jpg = Dave Grandbois (hunter-green Unicorn / Western Specialty Contractors jersey)
 
-Player profiles now sort by LAST NAME A-Z, including after the live Google Sheets feed loads. The prior roster fixes and test-result suppression remain in place. No changes to match schedule, scoring rules, or other site files.
+Upload these TWO JPG files to the ROOT of your GitHub repository, replacing the existing files with the same names. Do not rename them or replace index.html.
+
+After GitHub Pages publishes, refresh the site. If the old pictures persist, try a private browser window to bypass image cache.
