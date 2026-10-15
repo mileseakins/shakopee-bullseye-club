@@ -8,6 +8,13 @@
     (data.players || []).forEach(p => {
       if (players[p.ID]) { [p.Name,p.TeamID,p.Slot] = players[p.ID]; if (p.ID === 'P11') p.PortraitURL = ''; }
     });
+    // Keep player-profile cards alphabetized by surname for starter and live data.
+    // This also keeps the order stable for players with the same surname.
+    if (Array.isArray(data.players)) data.players.sort((a, b) => {
+      const surname = p => String(p.Name || '').trim().split(/\s+/).pop() || '';
+      return surname(a).localeCompare(surname(b), 'en', {sensitivity:'base'}) ||
+             String(a.Name || '').localeCompare(String(b.Name || ''), 'en', {sensitivity:'base'});
+    });
     (data.teams || []).forEach(t => {
       if (teams[t.ID]) [t.Name,t.PlayerAID,t.PlayerBID] = teams[t.ID];
     });
