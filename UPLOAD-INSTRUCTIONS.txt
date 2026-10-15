@@ -1,0 +1,35 @@
+SHAKOPEE BULLSEYE CLUB — VISUAL WEBSITE REDESIGN
+
+Upload these SEVEN files to the ROOT of your GitHub repository
+mileseakins/shakopee-bullseye-club (main branch):
+
+REPLACE:
+  index.html
+
+ADD (or replace if you already uploaded the previous team package):
+  team-profiles.js
+  team-profiles.css
+  redesign.js
+  redesign.css
+  club-lanes.jpg
+
+No need to remove or change your existing app.js, styles.css,
+starter-data.js, config.js, player photos, or other assets.
+
+WHAT CHANGES:
+- The APPROVED rainbow-lit, cinematic SBC banner replaces the old hero image.
+  Its branding is built into the image; there are NO hero buttons or duplicate text.
+- Four summary number blocks are removed.
+- Latest week's recorded results (or upcoming fixtures if no results)
+  appear in a compact scoreboard.
+- Performers of the Week and image-led News move toward the top.
+- Schedule & Results and Team Standings keep their functionality.
+- Individual rankings display the top three, with full table dialogs.
+- Team profiles still show A/B players and their match schedules.
+- Players gallery is more compact; mobile quick links and back-to-top added.
+
+IMPORTANT: The current repository config.js has an empty Google Sheets API URL.
+Live results and stats require your existing Sheets connection to be set up.
+The page will still show the roster/schedule starter data without it.
+
+After uploading, allow GitHub Pages a minute or two and refresh the site.
