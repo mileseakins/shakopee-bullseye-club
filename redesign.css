@@ -18,3 +18,15 @@
 .hero.hero-banner .hero-bottom{display:none!important}
 .hero.hero-banner .sbc-hero-copy{display:none!important}
 @media(max-width:620px){.hero.hero-banner{min-height:0!important;aspect-ratio:1934 / 794}.hero.hero-banner .sbc-lanes-art{height:auto!important}}
+
+/* Consistent player-card portrait framing; Allex's original image is unchanged. */
+#player-grid .player-card .portrait { height: 210px; overflow: hidden; }
+#player-grid .player-card .portrait img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+}
+#player-grid .player-card .portrait img[src*="P11.jpg"] {
+  object-position: center 15%;
+  transform: scale(1.12);
+  transform-origin: center 25%;
+}
