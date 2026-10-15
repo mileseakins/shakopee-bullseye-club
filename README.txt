@@ -1,1 +1,1 @@
-Upload index.html to the ROOT of mileseakins/shakopee-bullseye-club on GitHub and replace the existing index.html. The previously uploaded sbc-substitute-fix.js is already present; no need to upload it again. This package only connects that file to the site.
+Upload BOTH files to the ROOT of mileseakins/shakopee-bullseye-club on GitHub, replacing the existing files. Keep all other files unchanged. The existing sbc-substitute-fix.js remains loaded. Week 1 matches are synchronized to the confirmed Google Sheet; future live results continue loading.
