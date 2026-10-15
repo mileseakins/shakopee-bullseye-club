@@ -13,6 +13,10 @@
     });
     const a = {T01:'Eddy (T1 A)',T02:'Nick (T2 A)',T03:'Brian D. (T3 A)',T04:'Dave (T4 A)',T05:'Heang (T5 A)',T06:'Jason (T6 A)',T07:'Nate (T7 A)',T08:'Miles (T8 A)'};
     (data.schedule || []).forEach(f => {if (a[f.HomeTeamID] && a[f.AwayTeamID]) f.Game1 = a[f.HomeTeamID] + ' vs ' + a[f.AwayTeamID];});
+    // Suppress the pre-season test Cricket score, including when live feed loads.
+    if (Array.isArray(data.results)) data.results = data.results.filter(r =>
+      !(String(r.FixtureID).trim() === 'F01-1' && String(r.ContestType).trim().toUpperCase() === 'CRICKET' && Number(r.HomeLegs) === 2 && Number(r.AwayLegs) === 1)
+    );
     return data;
   }
   if (window.BULLSEYE_STARTER_DATA) fix(window.BULLSEYE_STARTER_DATA);
