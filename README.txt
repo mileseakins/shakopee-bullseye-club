@@ -1,22 +1,16 @@
-SHAKOPEE BULLSEYE CLUB — TEAM PROFILES UPDATE
+SHAKOPEE BULLSEYE CLUB — ROSTER HOTFIX — OCTOBER 15, 2026
 
-Upload these THREE files to the ROOT of your existing GitHub repository:
-  index.html         (replace existing index.html)
-  team-profiles.js   (new file)
-  team-profiles.css  (new file)
+UPLOAD TWO FILES TO THE ROOT OF YOUR GITHUB REPOSITORY:
+  1. index.html (replace existing file)
+  2. roster-hotfix.js (new file)
 
-DO NOT delete or replace your existing app.js, styles.css, config.js,
-starter-data.js, photos, logo, or other assets.
+Keep every other existing website file unchanged. Do not delete the existing starter-data.js.
 
-After GitHub Pages deploys, refresh the website (hard refresh if needed).
-Open Team Standings and tap a team name. Its profile will show:
-- A/B roster with clickable player profiles
-- Individual PPR, MPR and 501 singles record
-- Team contest record
-- Schedule with date, ACTUAL time from your Sheet, opponent, lane and result
-- Next upcoming match
+Corrected pairings:
+  T01: Eddy Contreras / Tony Pastrana
+  T04: Dave Grandbois / Jack Stocker
+  T06: Jason Larson / Stevo Rathsabandith
 
-Player rankings now show a tap-to-open hint and arrow affordance.
-No My Team selector was added.
+This patch updates the website's starter roster AND patches the incoming live Google Sheets feed in the browser, without modifying match dates, lanes, times, results or other site features. Eddy has a placeholder portrait until a real photo is available.
 
-This package was syntax-checked but not browser-tested against the live deployment.
+After uploading, allow GitHub Pages to publish and refresh the website. Verify Team 1, Team 4, Team 6 and tonight's matchups.
