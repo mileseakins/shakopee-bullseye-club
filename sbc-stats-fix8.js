@@ -33,28 +33,6 @@ function update(){
  const ch=document.getElementById('cricket-head'),cb=document.getElementById('cricket-body');
  if(ch&&cb){const html=ranked.map((x,i)=>`<tr><td class="rank">${i+1}</td><td><button class="sbc-team-link" data-team="${E(x.team.ID)}">${E(x.team.Name)} ›</button></td><td>${(x.sum/x.count).toFixed(2)}</td><td>${x.count}</td></tr>`).join('');if(cb.innerHTML!==html){ch.innerHTML='<tr><th>#</th><th>Team</th><th>Season MPR</th><th>Matches Recorded</th></tr>';cb.innerHTML=html||'<tr><td colspan="4">No team Cricket results yet.</td></tr>';}}
  const hint=document.querySelector('#cricket .hint');if(hint&&/Enter HomeMPR/.test(hint.textContent))hint.textContent='Highest regular-season team Cricket MPR wins the $20 Cricket prize.';
- 
- // Standings use contest points: each A/B/Cricket win is one point.
- const standings=document.getElementById('team-body');
- const standingHead=document.getElementById('team-head');
- if(standings&&standingHead){
-   const tt=Object.fromEntries(S.teams.map(t=>[t.ID,{...t,points:0,w:0,l:0,legs:0,against:0,played:0}]));
-   const ff=Object.fromEntries(S.schedule.map(f=>[f.FixtureID,f]));
-   const by={};
-   for(const r of S.results){
-     const f=ff[r.FixtureID],k=String(r.ContestType).toUpperCase(),h=Number(r.HomeLegs),a=Number(r.AwayLegs);
-     if(!f||String(f.Phase).toLowerCase()!=='regular'||!['A','B','CRICKET'].includes(k)||![[2,0],[0,2],[2,1],[1,2]].some(([x,y])=>x===h&&y===a))continue;
-     (by[f.FixtureID]??={})[k]=r;
-     if(!tt[f.HomeTeamID]||!tt[f.AwayTeamID])continue;
-     tt[f.HomeTeamID].legs+=h;tt[f.HomeTeamID].against+=a;
-     tt[f.AwayTeamID].legs+=a;tt[f.AwayTeamID].against+=h;
-     tt[h>a?f.HomeTeamID:f.AwayTeamID].points++;
-   }
-   for(const [id,rr] of Object.entries(by)){if(!['A','B','CRICKET'].every(k=>rr[k]))continue;const f=ff[id],h=tt[f.HomeTeamID],a=tt[f.AwayTeamID];if(!h||!a)continue;h.played++;a.played++;const hw=Object.values(rr).filter(r=>Number(r.HomeLegs)>Number(r.AwayLegs)).length;if(hw>=2){h.w++;a.l++}else{a.w++;h.l++}}
-   const ts=Object.values(tt).sort((a,b)=>b.points-a.points||b.w-a.w||a.Name.localeCompare(b.Name));
-   standingHead.innerHTML='<tr><th>#</th><th>Team</th><th>W</th><th>L</th><th>Points</th><th>Legs +/−</th><th>Win %</th></tr>';
-   standings.innerHTML=ts.map((t,i)=>`<tr><td class="rank">${i+1}</td><td><button class="sbc-team-link" data-team="${E(t.ID)}">${E(t.Name)} ›</button></td><td>${t.w}</td><td>${t.l}</td><td><b>${t.points}</b></td><td>${t.legs} / ${t.against}</td><td>${t.played?(100*t.w/t.played).toFixed(1)+'%':'—'}</td></tr>`).join('');
- }
  cleanProfile();
  }catch(err){console.error('SBC stats v9:',err)}finally{busy=false;}
 }

@@ -1,1 +1,1 @@
-Upload ONLY sbc-stats-fix8.js to your GitHub repository root, replacing the existing file. No index.html change required. This removes the repeated DOM observer that could freeze the page.
+Replace ONLY index.html and sbc-stats-fix8.js in the GitHub repository root. This disables the conflicting live-standings-fix.js script without deleting it and removes the MutationObserver loop. All other files stay unchanged.
