@@ -1,3 +1,32 @@
-/** Public read-only data feed. Do not place private information in published tabs. */
-const PUBLIC_TABS={players:'Players',teams:'Teams',schedule:'Schedule',results:'Results',news:'News',awards:'Awards',weeklyStats:'Weekly Stats'};
-function doGet(e){const cb=(e&&e.parameter&&e.parameter.callback)||'';if(cb!=='receiveLeagueData')return ContentService.createTextOutput('Callback not allowed');try{const ss=SpreadsheetApp.getActiveSpreadsheet(),out={};Object.keys(PUBLIC_TABS).forEach(k=>{const sh=ss.getSheetByName(PUBLIC_TABS[k]);if(!sh){if(k==='weeklyStats'){out[k]=[];return;}throw Error('Missing sheet: '+PUBLIC_TABS[k]);}const vals=sh.getDataRange().getDisplayValues(),headers=vals.shift();out[k]=vals.filter(r=>r.some(v=>String(v).trim())).map(r=>Object.fromEntries(headers.map((h,i)=>[h,r[i]||''])))});return ContentService.createTextOutput(cb+'('+JSON.stringify(out)+');').setMimeType(ContentService.MimeType.JAVASCRIPT)}catch(err){return ContentService.createTextOutput(cb+'('+JSON.stringify({error:String(err.message)})+');').setMimeType(ContentService.MimeType.JAVASCRIPT)}}
+/** Read-only public feed for Shakopee Bullseye Club.
+ * Create from the Google Sheet via Extensions > Apps Script.
+ * Never put private information in the five public source tabs.
+ */
+const PUBLIC_TABS = {
+  players: 'Players', teams: 'Teams', schedule: 'Schedule',
+  results: 'Results', awards: 'Awards'
+};
+function doGet(e) {
+  const callback = (e && e.parameter && e.parameter.callback) || '';
+  // Only allow the exact callback expected by the website.
+  if (callback !== 'receiveLeagueData') {
+    return ContentService.createTextOutput('Callback not allowed');
+  }
+  try {
+    const book = SpreadsheetApp.getActiveSpreadsheet();
+    const result = {};
+    Object.keys(PUBLIC_TABS).forEach(key => {
+      const sheet = book.getSheetByName(PUBLIC_TABS[key]);
+      if (!sheet) throw new Error('Missing sheet: ' + PUBLIC_TABS[key]);
+      const values = sheet.getDataRange().getDisplayValues();
+      const headers = values.shift();
+      result[key] = values.filter(row => row.some(v => String(v).trim()))
+        .map(row => Object.fromEntries(headers.map((h,i) => [h, row[i] || ''])));
+    });
+    return ContentService.createTextOutput(callback+'('+JSON.stringify(result)+');')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  } catch(err) {
+    return ContentService.createTextOutput(callback+'('+JSON.stringify({error:String(err.message)})+');')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+}
