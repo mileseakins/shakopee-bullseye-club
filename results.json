@@ -1,0 +1,90 @@
+{
+  "matches": [
+    {
+      "fixture": "F01-1",
+      "week": 1,
+      "aHome": 0,
+      "aAway": 2,
+      "bHome": 2,
+      "bAway": 0,
+      "cricketHome": 2,
+      "cricketAway": 0,
+      "homeMpr": null,
+      "awayMpr": null,
+      "ppr": [
+        {
+          "player": "P03",
+          "value": 63.015
+        },
+        {
+          "player": "P15",
+          "value": 63.085
+        },
+        {
+          "player": "P16",
+          "value": 50.84
+        },
+        {
+          "player": "P04",
+          "value": 43.19
+        }
+      ]
+    },
+    {
+      "fixture": "F01-2",
+      "week": 1,
+      "aHome": null,
+      "aAway": null,
+      "bHome": null,
+      "bAway": null,
+      "cricketHome": null,
+      "cricketAway": null,
+      "homeMpr": null,
+      "awayMpr": null,
+      "ppr": []
+    },
+    {
+      "fixture": "F01-3",
+      "week": 1,
+      "aHome": 0,
+      "aAway": 2,
+      "bHome": 2,
+      "bAway": 0,
+      "cricketHome": 2,
+      "cricketAway": 0,
+      "homeMpr": null,
+      "awayMpr": null,
+      "ppr": [
+        {
+          "player": "P05",
+          "value": 59
+        },
+        {
+          "player": "P13",
+          "value": 50
+        },
+        {
+          "player": "P06",
+          "value": 45.155
+        },
+        {
+          "player": "P14",
+          "value": 39.965
+        }
+      ]
+    },
+    {
+      "fixture": "F01-4",
+      "week": 1,
+      "aHome": null,
+      "aAway": null,
+      "bHome": null,
+      "bAway": null,
+      "cricketHome": null,
+      "cricketAway": null,
+      "homeMpr": null,
+      "awayMpr": null,
+      "ppr": []
+    }
+  ]
+}
