@@ -1,42 +1,33 @@
-/* SBC live result normalization: 501_A / 501_B -> A / B for all legacy renderers. */
+/* Normalize live contest names BEFORE legacy renderers receive data. */
 (() => {
   'use strict';
-  function sync() {
-    if (typeof S === 'undefined') return;
-    for (const r of (S.results || [])) {
+  function normalize(payload) {
+    if (!payload || payload.error) return payload;
+    for (const r of (payload.results || [])) {
       const type = String(r.ContestType || '').trim().toUpperCase();
       if (type === '501_A') r.ContestType = 'A';
-      if (type === '501_B') r.ContestType = 'B';
+      else if (type === '501_B') r.ContestType = 'B';
     }
-    // Weekly Stats is the source of the current player 501 ratings.
     const byPlayer = new Map();
-    for (const r of (S.weeklyStats || [])) {
-      const pid = String(r.PlayerID || '').trim();
-      const ppr = Number(r.PPR);
-      const week = Number(r.Week) || 0;
-      if (!pid || !Number.isFinite(ppr) || ppr <= 0) continue;
-      const previous = byPlayer.get(pid);
-      if (!previous || week >= previous.week) byPlayer.set(pid, { week, ppr });
+    for (const row of (payload.weeklyStats || [])) {
+      const id = String(row.PlayerID || '').trim();
+      const ppr = Number(row.PPR), week = Number(row.Week) || 0;
+      if (!id || !Number.isFinite(ppr) || ppr <= 0) continue;
+      const old = byPlayer.get(id);
+      if (!old || week >= old.week) byPlayer.set(id, {week,ppr});
     }
-    for (const p of (S.players || [])) {
+    for (const p of (payload.players || [])) {
       const latest = byPlayer.get(String(p.ID || '').trim());
       if (latest) p.PPR = latest.ppr;
     }
-  }
-  function repaint() {
-    sync();
-    if (typeof render === 'function') render();
-    if (typeof showFixtures === 'function') showFixtures();
+    return payload;
   }
   const original = window.receiveLeagueData;
   if (typeof original === 'function') {
     window.receiveLeagueData = function(payload) {
-      original(payload);
-      if (payload && !payload.error) {
-        repaint();
-        requestAnimationFrame(repaint);
-      }
+      return original(normalize(payload));
     };
   }
-  repaint();
+  // Starter data is only a fallback, but keep its contest names consistent too.
+  if (typeof S !== 'undefined') normalize({results:S.results,weeklyStats:S.weeklyStats,players:S.players});
 })();
