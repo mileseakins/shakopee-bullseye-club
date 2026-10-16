@@ -1,2 +1,1 @@
-Upload index.html and sbc-stats-fix8.js to the root of your GitHub repo. Replace index.html. Refresh site after Pages deploys.
-The four known Week 1 team MPRs are temporary fallback values until Google Sheets has HomeMPR and AwayMPR columns.
+Upload ONLY sbc-stats-fix8.js to your GitHub repository root, replacing the existing file. No index.html change required. This removes the repeated DOM observer that could freeze the page.
