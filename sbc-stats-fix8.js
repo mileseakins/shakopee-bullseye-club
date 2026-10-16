@@ -38,6 +38,9 @@ function update(){
 }
 const original=window.receiveLeagueData;
 if(typeof original==='function')window.receiveLeagueData=function(data){const r=original(data);queueMicrotask(update);return r};
+const root=document.querySelector('main')||document.body;
+const observer=new MutationObserver(()=>{if(!busy)update()});
+observer.observe(root,{subtree:true,childList:true});
 document.addEventListener('click',e=>{if(e.target.closest('[data-player]'))setTimeout(cleanProfile,0)},true);
 update();
 })();

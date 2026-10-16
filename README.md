@@ -1,39 +1,36 @@
-# Shakopee Bullseye Club — starter website
+# Shakopee Bullseye Club — Website v2
 
-## Files
-- `index.html` — homepage and all website sections
-- `styles.css` — dark PDC-inspired styling
-- `app.js` — player profiles, rankings, fixtures and scoring logic
-- `config.js` — paste your Google Apps Script URL here
-- `Code.gs` — read-only Google Sheets connector
-- `Shakopee_Bullseye_Club_Starter.xlsx` — import into Google Sheets
+## What is included
+Eight requested sections: Schedule/Results, Team Standings, Cricket Rankings, 501 Rankings, A MVP, B MVP, Individual Power Rankings, News. Plus Home, Player Profiles and Playoffs.
 
-## Launch in Google Sheets
-1. Upload `Shakopee_Bullseye_Club_Starter.xlsx` to Google Drive and open with Google Sheets. Save as a native Google Sheet if prompted.
-2. The `Players` and `Teams` tabs contain the 16 named players and eight supplied team pairings. **A/B slots are provisional:** first-listed player is A, second-listed is B. Confirm or swap slots if needed, keeping IDs consistent.
-3. Enter the real fixtures in `Schedule`, using the same Team IDs as `Teams` and unique Fixture IDs. Week, Date, Time, Phase, HomeTeamID, AwayTeamID, Status are the exact headers.
-4. Enter three rows per completed fixture in `Results`: ContestType `A`, `B`, and `CRICKET`; HomeLegs and AwayLegs must be 2–0, 2–1, 0–2, or 1–2. The website calculates standings from these rows. Do not type final scores for unplayed contests.
-5. Enter manual PPR and MPR averages in `Players`. Add HTTPS public image URLs in `PortraitURL` (GitHub-hosted images recommended).
-6. In Google Sheets, choose **Extensions → Apps Script**. Replace the default script with `Code.gs`. Save.
-7. Choose **Deploy → New deployment → Web app**. Set **Execute as: Me** and **Who has access: Anyone**. Authorize, deploy, and copy the URL ending in `/exec`.
-8. Paste that URL into `config.js` as `window.BULLSEYE_API_URL = 'https://script.google.com/macros/s/.../exec';`.
-9. Upload `index.html`, `styles.css`, `app.js`, `config.js`, and any portrait images to a **public GitHub repository**. In **Settings → Pages**, select **Deploy from a branch**, branch `main`, root `/`. Your website will have a free `github.io` address.
-10. Visit the site. Update your Google Sheet after league night and refresh the website to see the changes. To refresh automatically, add a reload timer if desired.
+## League data
+All 16 players and confirmed A/B slots are entered. All 56 regular-season fixtures have been generated for a double round robin on 14 Thursdays (October 15, 2026 through February 4, 2027, excluding Thanksgiving, Christmas and New Year breaks). **The fixture pairings and home/away assignments are generated examples, not an independently verified official schedule.** Check/reorder them to match your real schedule. Times are blank. Three playoff placeholders need teams assigned.
 
-## Important scoring definitions
-- **Team standings:** each completed A singles, B singles, and team cricket contest gives the winning team **one point**. Sort by total points, contest win percentage, legs differential, legs won. A 2–1 fixture gives the winner 2 points and the loser 1.
-- **A/B singles:** only their own 501 best-of-three contest affects their singles W/L and legs.
-- **Cricket standings:** team cricket best-of-three results only.
-- **PPR/MPR:** manually entered in the Players tab, not inferred from match scores.
-- **Incomplete fixtures:** any valid contest contributes to standings even if the other two contests have not been entered. A fixture is marked FINAL only when all three contests are complete.
-- **Playoffs:** set Schedule.Phase to `Playoffs` or `Final` to display in the playoffs section; playoff results are displayed separately and excluded from regular-season rankings.
-- **Privacy:** the Apps Script feed is publicly readable and returns the contents of the five source tabs. Do not store phone numbers, emails, private notes or other sensitive information there. The spreadsheet itself can remain private.
+## Import and connect
+1. Import `Shakopee_Bullseye_Club_2026-27.xlsx` into Google Sheets. It has Players, Teams, Schedule, Results, News, Awards, Guide.
+2. Under **Extensions > Apps Script**, paste `Code.gs`, save, deploy as **Web app**, execute as **Me**, access **Anyone**. This makes the selected six data tabs publicly readable, but not editable. Do not include private information in them.
+3. Copy the deployed `/exec` URL into `config.js` (replace empty string).
+4. Publish `index.html`, `styles.css`, `app.js`, `config.js`, `starter-data.js` and optionally `images/` to GitHub Pages. On the published site, the spreadsheet feed overrides the bundled demo roster.
+5. Alternatively embed the published GitHub Pages URL in Google Sites using Insert > Embed > By URL.
 
-## Images
-Store player portraits in an `images/` folder in the same GitHub repository. Use full public URLs in the Players tab, such as `https://YOURNAME.github.io/YOURREPO/images/player-01.jpg`. Your PDC-style portraits can be used after you provide/export the files.
+## Weekly editing
+- **Results**: enter one row per contest with `FixtureID`, `ContestType` (`A`, `B`, `CRICKET`), `HomeLegs`, `AwayLegs`. Allowed scores: 2–0, 2–1, 0–2, 1–2. Never enter a contest twice for the same fixture.
+- **Players**: enter manually calculated season-to-date `PPR` and `MPR`; enter public HTTPS `PortraitURL`, `Sponsor1`, `Sponsor2`. Keep player IDs stable.
+- **News**: add rows with `Published` = `Yes` to show them. News text is safely escaped and displayed as plain text.
+- **Schedule**: fill times and correct pairings; playoffs must have team IDs once decided.
 
-## Current roster status
-All 16 players and eight team pairings are entered. A/B roles are provisional based on the order supplied. Fixture dates and player portraits are still pending.
+## Ranking rules
+- Team standings: 1 point per winning A 501, B 501, or team cricket contest. Ties: contest win %, leg difference, legs won.
+- A/B MVP: 1 point per 501 singles match win. Ties: **legs won, then singles win percentage**. No playoff matches included.
+- 501 rankings: PPR descending, only players with a positive manually entered PPR.
+- Cricket rankings: MPR descending, only players with a positive manually entered MPR. This is **individual** MPR, not the team cricket record.
+- Individual power rankings: provisional 40% normalized PPR + 30% normalized MPR + 30% 501 singles win percentage. Eligible only after both averages and at least one singles match are entered. Normalization uses the highest eligible PPR/MPR in the league. Formula can be adjusted later.
+- Playoffs: Phase other than `Regular` displays in the playoff section and is excluded from season standings.
 
-## Google Sites
-You can embed the published GitHub Pages URL in Google Sites with **Insert → Embed → By URL**. Hosting the full site on GitHub Pages provides better navigation and full control over layout.
+## Preview
+Open `index.html` in a browser. Without an Apps Script URL it shows the actual confirmed roster, generated fixtures, and sample welcome news, but no fabricated results or performance averages.
+
+## Championship banner update
+The homepage now displays `every-dart-counts.webp` with the approved EVERY DART COUNTS slogan. Buttons and subtitle appear below the artwork, never on top of it. Upload the image alongside `index.html` and `styles.css`.
+
+NEWS UPDATE: The Bullseye Bulletin season preview is preloaded in starter-data.js. Three most recent published news cards appear with full-article dialogs; View All News appears when more than three are available. Once a live Google Sheets feed is configured, add this article as a row in the News tab to retain it in the live feed. See SEASON_PREVIEW.txt.

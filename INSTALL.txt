@@ -1,1 +1,2 @@
-Replace ONLY index.html and sbc-stats-fix8.js in the GitHub repository root. This disables the conflicting live-standings-fix.js script without deleting it and removes the MutationObserver loop. All other files stay unchanged.
+Upload index.html and sbc-stats-fix8.js to the root of your GitHub repo. Replace index.html. Refresh site after Pages deploys.
+The four known Week 1 team MPRs are temporary fallback values until Google Sheets has HomeMPR and AwayMPR columns.
