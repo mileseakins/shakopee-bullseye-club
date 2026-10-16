@@ -1,1 +1,2 @@
-Upload index.html and sbc-live-results-sync.js to the ROOT of your GitHub repository, replacing both existing files. This version installs the result normalization immediately after app.js, before other renderers. Wait for GitHub Pages deployment, then refresh. No Google Sheets changes.
+Upload index.html and sbc-stats-fix8.js to the root of your GitHub repo. Replace index.html. Refresh site after Pages deploys.
+The four known Week 1 team MPRs are temporary fallback values until Google Sheets has HomeMPR and AwayMPR columns.
