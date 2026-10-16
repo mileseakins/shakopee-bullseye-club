@@ -39,6 +39,11 @@ function paint(){
  // Remove obsolete individual power ranking references if rendered.
  document.querySelectorAll('#power-rankings [data-mpr], #individual-power-rankings [data-mpr]').forEach(el=>el.remove());
 }
+// Ensure old ranking renderer cannot leave individual Cricket table visible.
+const oldRankings=window.rankings;
+if(typeof oldRankings==='function')window.rankings=function(){const result=oldRankings.apply(this,arguments);paint();return result};
+const oldRender=window.render;
+if(typeof oldRender==='function')window.render=function(){const result=oldRender.apply(this,arguments);paint();return result};
 const rerender=()=>{paint();requestAnimationFrame(paint)};
 const original=window.receiveLeagueData;
 if(typeof original==='function')window.receiveLeagueData=function(payload){original(payload);if(payload&&!payload.error)rerender()};

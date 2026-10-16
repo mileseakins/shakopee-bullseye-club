@@ -1,5 +1,7 @@
-UPLOAD BOTH index.html and sbc-team-cricket.js into the ROOT of your GitHub repository, replacing the existing index.html. Do not delete any other files. Refresh the site after GitHub Pages publishes.
+SBC Team Cricket MPR FIX — October 15, 2026
 
-In your Google Sheet Results tab add HomeMPR and AwayMPR columns (if not already present) and enter the GranBoard team MPR for each Cricket contest. The existing Code.gs reads these columns automatically.
+Upload BOTH index.html and sbc-team-cricket.js to the ROOT of your GitHub repository, overwriting both existing files. Commit the changes. Wait for GitHub Pages to deploy, then open the website with ?v=fix5 appended to the URL.
 
-Team season MPR is the arithmetic mean of entered match MPRs. This is not a darts-weighted average; marks and darts are needed for that.
+This update hardcodes the Team Cricket heading in index.html, cache-busts scripts, and re-applies team-only rankings after old site rendering. Individual Cricket MPR should no longer display.
+
+In the Google Sheets Results tab, add HomeMPR and AwayMPR columns for Cricket rows to populate team rankings. Season MPR shown is average of recorded match MPRs, not weighted by darts.
